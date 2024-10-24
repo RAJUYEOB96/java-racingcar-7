@@ -1,9 +1,10 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
-//import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Application {
@@ -15,7 +16,26 @@ public class Application {
         String tryNum = Console.readLine();
         int intTryNum = Integer.parseInt(tryNum);
 
-        System.out.println("cars name : " + Arrays.toString(carsName) + " TryNum : " + intTryNum);
+        Map<String,Integer> carsDistance = new HashMap<>();
+
+        for (int i = 0; i < carsName.length; i++) {
+            String name = carsName[i];
+            carsDistance.put(name,0);
+        }
+
+        for (int i = 0; i < intTryNum; i++) {
+            System.out.println(i + 1 + "th try result");
+            for (String name : carsName) {
+                int randomNum = Randoms.pickNumberInRange(0, 9);
+                if (randomNum >= 4){
+                    carsDistance.put(name, carsDistance.get(name) + 1);
+                }
+                System.out.println(name + " : " + "-".repeat(carsDistance.get(name)));
+            }
+            System.out.println("\n");
+        }
 
     }
+
 }
+
